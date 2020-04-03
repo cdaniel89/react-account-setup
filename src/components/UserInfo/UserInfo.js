@@ -37,22 +37,19 @@ const UserInfo = props => {
     });
   };
 
-  // const sendProps = formData => {
-  //   return formData;
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
     const formErrors = userFormValidate(formData);
     if (formErrors.length > 0) {
-      setUserFormErrors(formErrors);
+      props.setUserFormErrors({ errors: formErrors });
+
+      setTimeout(function() {
+        props.setUserFormErrors({ errors: [] });
+      }, 5000);
+
       return;
     }
     props.sendProps(formData);
-    // props.dispatch({
-    //   type: "SUBMIT_FORM",
-    //   payload: formData
-    // });
   };
 
   return (
@@ -173,7 +170,7 @@ const mapStateToProps = state => ({
   phone: state.userReducer.phone,
   address: state.userReducer.address,
   userData: state.userReducer,
-  errors: state.errorReducer.errors
+  currentFormErrors: state.errorReducer
 });
 
 const mapDispatchToProps = dispatch => ({

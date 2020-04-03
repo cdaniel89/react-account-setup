@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 const HeaderColor = props => {
   const wrapperRef = useRef(null);
   const wrapperRef1 = useRef(null);
-  console.log(props);
   // below is the same as componentDidMount and componentDidUnmount
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, false);

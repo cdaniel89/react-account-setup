@@ -40,3 +40,19 @@ p.preview-label {
   color: #666666;
   margin-bottom: 7px;
 }
+ul.errors {
+  margin: 0 auto;
+  max-width: 288px;
+}
+.errors li {
+  list-style-type: none;
+  color: #fff;
+  background-color: #ff0000;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+}
+span.delete {
+  margin-left: auto;
+  cursor: pointer;
+}

@@ -10,9 +10,11 @@ export const userFormValidate = formData => {
     errors.push("Phone is required");
   }
   var regex = /^\+([0-9]{1})\)?[-.\s]?([0-9]{4})?[-.\s]?([0-9]{3})[-.\s]?([0-9]{3})$/;
-  console.log(new RegExp(regex).test(formData.phone));
-  if (!new RegExp(regex).test(formData.phone)) {
+  if (formData.phone.length > 0 && !new RegExp(regex).test(formData.phone)) {
     errors.push("Invalid phone number");
+  }
+  if (formData.address.length === 0) {
+    errors.push("Address is required");
   }
 
   return errors;

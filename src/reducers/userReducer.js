@@ -12,7 +12,6 @@ const userReducer = (state = initialState, { type, payload }) => {
   const newState = { ...state };
   if (type === "SUBMIT_FORM") {
     return { ...newState, ...payload };
-    // return newState.merge(fromJS(payload));
   }
 
   return newState;

@@ -1,5 +1,6 @@
 import React from "react";
 import "./AccountPreview.css";
+import { setUserFormErrors } from "../../actions/errorForm";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -7,6 +8,12 @@ import PropTypes from "prop-types";
 const AccountPreview = props => {
   const style = {
     backgroundImage: `linear-gradient(to right, #${props.color1}, #${props.color2})`
+  };
+
+  const removeItem = index => {
+    const tempErrors = [...props.currentFormErrors.errors];
+    tempErrors.splice(index, 1);
+    props.setUserFormErrors({ errors: tempErrors });
   };
 
   return (
@@ -43,6 +50,16 @@ const AccountPreview = props => {
           </div>
         </div>
       </div>
+      <ul className="errors">
+        {props.currentFormErrors.errors.map((error, index) => (
+          <li key={index} className={index}>
+            <span>{error}</span>
+            <span onClick={() => removeItem(index)} className="delete">
+              x
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
@@ -66,7 +83,15 @@ const mapStateToProps = state => ({
   title: state.userReducer.title,
   level: state.userReducer.level,
   phone: state.userReducer.phone,
-  address: state.userReducer.address
+  address: state.userReducer.address,
+
+  currentFormErrors: state.errorReducer
 });
 
-export default connect(mapStateToProps)(AccountPreview);
+const mapDispatchToProps = dispatch => ({
+  setUserFormErrors: errors => {
+    dispatch(setUserFormErrors(errors));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountPreview);

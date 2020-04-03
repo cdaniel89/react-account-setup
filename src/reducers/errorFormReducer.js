@@ -4,6 +4,7 @@ const initialState = {
 
 const errorReducer = (state = initialState, { type, errors }) => {
   const newState = { ...state };
+
   if (type === "USER_FORM_ERRORS") {
     return { ...newState, ...errors };
   }
