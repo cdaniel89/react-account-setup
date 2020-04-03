@@ -1,0 +1,42 @@
+.main-content {
+  /* background-color: #efefef; */
+}
+
+.user-top,
+.user-bottom {
+  display: flex;
+  padding: 30px;
+  font-size: 24px;
+}
+.account-preview h2 {
+  margin-bottom: 28px;
+}
+.user-top {
+  /* background-image: linear-gradient(to top, #7e57c2, #5c6bc0); */
+  color: #fff;
+}
+.user-top img {
+  width: 140px;
+  height: 140px;
+}
+.user-bottom img {
+  width: 350px;
+  height: 350px;
+}
+.user-header,
+.user-info {
+  padding-left: 30px;
+  flex: 1;
+}
+.user-info-row {
+  margin-bottom: 34px;
+  width: 75%;
+}
+.user-info-row:last-child {
+  margin-bottom: 0;
+}
+p.preview-label {
+  font-size: 18px;
+  color: #666666;
+  margin-bottom: 7px;
+}
