@@ -1,6 +1,6 @@
 import React from "react";
 import "./AccountPreview.css";
-import { setUserFormErrors } from "../../actions/errorForm";
+import { setUserFormErrors, removeErrorItem } from "../../actions/errorForm";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -8,12 +8,6 @@ import PropTypes from "prop-types";
 const AccountPreview = props => {
   const style = {
     backgroundImage: `linear-gradient(to right, #${props.color1}, #${props.color2})`
-  };
-
-  const removeItem = index => {
-    const tempErrors = [...props.currentFormErrors.errors];
-    tempErrors.splice(index, 1);
-    props.setUserFormErrors({ errors: tempErrors });
   };
 
   return (
@@ -54,7 +48,10 @@ const AccountPreview = props => {
         {props.currentFormErrors.errors.map((error, index) => (
           <li key={index} className={index}>
             <span>{error}</span>
-            <span onClick={() => removeItem(index)} className="delete">
+            <span
+              onClick={() => props.removeErrorItem(index)}
+              className="delete"
+            >
               x
             </span>
           </li>
@@ -91,6 +88,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setUserFormErrors: errors => {
     dispatch(setUserFormErrors(errors));
+  },
+  removeErrorItem: index => {
+    dispatch(removeErrorItem(index));
   }
 });
 

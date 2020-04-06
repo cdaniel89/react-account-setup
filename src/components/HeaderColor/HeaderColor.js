@@ -35,8 +35,12 @@ const HeaderColor = props => {
     backgroundColor: "#" + props.color2
   };
   const hidePopin = () => {
-    props.setActiveColorPicker("colorBox1", false);
-    props.setActiveColorPicker("colorBox2", false);
+    if (props.colorBox1) {
+      props.setActiveColorPicker("colorBox1", !props.colorBox1);
+    }
+    if (props.colorBox2) {
+      props.setActiveColorPicker("colorBox2", !props.colorBox2);
+    }
   };
 
   return (
