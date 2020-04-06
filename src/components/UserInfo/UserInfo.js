@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setUserFormErrors } from "../../actions/errorForm";
+import { submitUserForm } from "../../actions/userForm";
+
 import { userFormValidate } from "./UserFormValidation";
 
 import "./UserInfo.css";
@@ -178,7 +180,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setUserFormErrors(errors));
   },
   sendProps: formData => {
-    dispatch({ type: "SUBMIT_FORM", payload: formData });
+    dispatch(submitUserForm(formData));
   }
 });
 
