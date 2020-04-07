@@ -5,7 +5,7 @@ const InitialState = new Record({
     color2: '5c6bc0',
 });
 
-const colorReducer = (state = new InitialState(), action) => {
+const color = (state = new InitialState(), action) => {
     switch (action.type) {
         case 'CHANGE_COLOR': {
             return state.set([action.colorProp], action.hexColor);
@@ -15,4 +15,4 @@ const colorReducer = (state = new InitialState(), action) => {
     }
 };
 
-export default colorReducer;
+export default color;

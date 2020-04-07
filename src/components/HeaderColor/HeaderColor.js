@@ -98,17 +98,12 @@ HeaderColor.propTypes = {
     colorBox2: PropTypes.bool.isRequired,
 };
 
-HeaderColor.defaultProps = {
-    color1: '7e57c2',
-    color2: '5c6bc0',
-    colorBox1: false,
-    colorBox2: false,
-};
+
 const mapStateToProps = (state) => ({
-    color1: state.colorReducer.color1,
-    color2: state.colorReducer.color2,
-    colorBox1: state.popinReducer.colorBox1,
-    colorBox2: state.popinReducer.colorBox2,
+    color1: state.color.color1,
+    color2: state.color.color2,
+    colorBox1: state.popin.colorBox1,
+    colorBox2: state.popin.colorBox2,
 });
 const mapDispatchToProps = (dispatch) => ({
     setColorPicker: (colorProp, colorHex) => {

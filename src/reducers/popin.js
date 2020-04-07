@@ -5,7 +5,7 @@ const InitialState = new Record({
     colorBox2: false,
 });
 
-const popinReducer = (state = new InitialState(), action) => {
+const popin = (state = new InitialState(), action) => {
     switch (action.type) {
         case 'ACTIVE_COLOR_PICKER': {
             return state.set([action.colorProp], action.active);
@@ -15,4 +15,4 @@ const popinReducer = (state = new InitialState(), action) => {
     }
 };
 
-export default popinReducer;
+export default popin;

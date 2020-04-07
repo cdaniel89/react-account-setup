@@ -13,13 +13,7 @@
             "jsx": true
         }
     },
-    "extends": [
-        "airbnb",
-        "prettier"
-    ],
-    "plugins": [
-        "prettier"
-    ],
+    "extends": "airbnb",
     "rules": {
         "linebreak-style": 0,
         "operator-linebreak": 0,

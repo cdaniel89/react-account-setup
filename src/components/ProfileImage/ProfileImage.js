@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { uploadPhoto } from '../../actions/userForm';
+
 
 import PropTypes from 'prop-types';
 
@@ -9,10 +11,7 @@ const ProfileImage = (props) => {
         const reader = new FileReader();
         const file = e.target.files[0];
         reader.onloadend = () => {
-            props.dispatch({
-                type: 'UPLOAD_PHOTO',
-                imagePreviewUrl: reader.result,
-            });
+            props.uploadPhoto(reader.result);
         };
         reader.readAsDataURL(file);
     };
@@ -48,7 +47,14 @@ ProfileImage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    imagePreviewUrl: state.imageReducer.imagePreviewUrl,
+    imagePreviewUrl: state.user.imagePreviewUrl,
+});
+const mapDispatchToProps = (dispatch) => ({
+    uploadPhoto: (imagePreviewUrl) => {
+        dispatch(uploadPhoto(imagePreviewUrl));
+    },
 });
 
-export default connect(mapStateToProps)(ProfileImage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileImage);
+
+

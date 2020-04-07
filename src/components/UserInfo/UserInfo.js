@@ -145,7 +145,6 @@ const UserInfo = (props) => {
                 />
             </div>
 
-            {/* <button type="submit" className="btn" onClick={props.handleSubmit}> */}
             <div className="fixed-button">
                 <button type="submit" className="btn">
                     SAVE
@@ -165,14 +164,14 @@ UserInfo.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    name: state.userReducer.name,
-    description: state.userReducer.description,
-    title: state.userReducer.title,
-    level: state.userReducer.level,
-    phone: state.userReducer.phone,
-    address: state.userReducer.address,
-    userData: state.userReducer,
-    currentFormErrors: state.errorReducer,
+    name: state.user.userDetails.name,
+    description: state.user.userDetails.description,
+    title: state.user.userDetails.title,
+    level: state.user.userDetails.level,
+    phone: state.user.userDetails.phone,
+    address: state.user.userDetails.address,
+    userData: state.user.userDetails,
+    currentFormErrors: state.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,7 +2,7 @@ const initialState = {
     errors: [],
 };
 
-const errorReducer = (state = initialState, action) => {
+const error = (state = initialState, action) => {
     switch (action.type) {
         case 'USER_FORM_ERRORS': {
             const newState = { ...state };
@@ -17,4 +17,4 @@ const errorReducer = (state = initialState, action) => {
             return state;
     }
 };
-export default errorReducer;
+export default error;

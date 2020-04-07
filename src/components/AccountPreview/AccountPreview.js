@@ -10,6 +10,10 @@ const AccountPreview = (props) => {
         backgroundImage: `linear-gradient(to right, #${props.color1}, #${props.color2})`,
     };
 
+    const removeError = index => {
+        props.removeErrorItem(index);
+    }
+
     return (
         <div className="account-preview main-content">
             <div className="user-top" style={style}>
@@ -49,7 +53,7 @@ const AccountPreview = (props) => {
                     <li key={index} className={index}>
                         <span>{error}</span>
                         <span
-                            onClick={() => props.removeErrorItem(index)}
+                            onClick={() => removeError(index)}
                             className="delete"
                         >
                             x
@@ -66,23 +70,20 @@ AccountPreview.propTypes = {
     color1: PropTypes.string.isRequired,
     color2: PropTypes.string.isRequired,
 };
-AccountPreview.defaultProps = {
-    color1: '7e57c2',
-    color2: '5c6bc0',
-};
+
 const mapStateToProps = (state) => ({
-    imagePreviewUrl: state.imageReducer.imagePreviewUrl,
-    color1: state.colorReducer.color1,
-    color2: state.colorReducer.color2,
+    imagePreviewUrl: state.user.imagePreviewUrl,
+    color1: state.color.color1,
+    color2: state.color.color2,
 
-    name: state.userReducer.name,
-    description: state.userReducer.description,
-    title: state.userReducer.title,
-    level: state.userReducer.level,
-    phone: state.userReducer.phone,
-    address: state.userReducer.address,
+    name: state.user.userDetails.name,
+    description: state.user.userDetails.description,
+    title: state.user.userDetails.title,
+    level: state.user.userDetails.level,
+    phone: state.user.userDetails.phone,
+    address: state.user.userDetails.address,
 
-    currentFormErrors: state.errorReducer,
+    currentFormErrors: state.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({
