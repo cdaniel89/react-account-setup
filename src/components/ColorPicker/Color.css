@@ -1,40 +1,39 @@
 .colors {
-  width: 210px;
-  background-color: #ffffff;
-  /* padding: 5px; */
-  border-radius: 5px;
+	width: 210px;
+	background-color: #ffffff;
+	border-radius: 5px;
 }
 .colors span {
-  display: inline-block;
+	display: inline-block;
 }
 .colors .color-item.active,
 .color-item:hover {
-  border: 1px solid #48bdff;
+	border: 1px solid #48bdff;
 }
 .color-item {
-  border-radius: 5px;
-  width: 36px;
-  height: 36px;
-  margin-left: 5px;
-  margin-top: 5px;
-  cursor: pointer;
-  border: solid 1px #e8ebf0;
+	border-radius: 5px;
+	width: 36px;
+	height: 36px;
+	margin-left: 5px;
+	margin-top: 5px;
+	cursor: pointer;
+	border: solid 1px #e8ebf0;
 }
 .color-hex-wrapper {
-  position: relative;
+	position: relative;
 }
 .colors {
-  display: none;
-  position: absolute;
-  left: 5px;
-  top: 37px;
-  z-index: 1000;
+	display: none;
+	position: absolute;
+	left: 5px;
+	top: 37px;
+	z-index: 1000;
 }
 /* .color-hex-wrapper:hover > .colors { */
 .colors.active {
-  display: block;
+	display: block;
 }
 .color-picker .color:last-child .colors {
-  left: unset;
-  right: -10px;
+	left: unset;
+	right: -10px;
 }
