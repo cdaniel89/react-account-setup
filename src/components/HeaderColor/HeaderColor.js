@@ -2,13 +2,15 @@ import React, { useRef, useEffect } from 'react';
 import Colors from '../../components/ColorPicker/Colors';
 import { connect } from 'react-redux';
 import { setColorPicker } from '../../actions/colorPicker';
-import { setActiveColorPicker } from '../../actions/popinColor';
+import { setActiveColorBox } from '../../actions/popinColor';
 import PropTypes from 'prop-types';
 
+const COLOR1 = 'color1';
+const COLOR2 = 'color2';
+
 const HeaderColor = (props) => {
-    const wrapperRef = useRef(null);
-    const wrapperRef1 = useRef(null);
-    // below is the same as componentDidMount and componentDidUnmount
+    const color1 = useRef(null);
+    const color2 = useRef(null);
     useEffect(() => {
         document.addEventListener('click', handleClickOutside, false);
         return () => {
@@ -18,52 +20,82 @@ const HeaderColor = (props) => {
 
     const handleClickOutside = (event) => {
         if (
-            wrapperRef.current &&
-            !wrapperRef.current.contains(event.target) &&
-            wrapperRef1.current &&
-            !wrapperRef1.current.contains(event.target)
+            color1.current &&
+            !color1.current.contains(event.target) &&
+            color2.current &&
+            !color2.current.contains(event.target)
         ) {
             hidePopin();
         }
     };
 
-    const color1Style = {
-        backgroundColor: '#' + props.color1,
+    const colorStyle = {
+        color1: { backgroundColor: '#' + props.color1 },
+        color2: { backgroundColor: '#' + props.color2 },
     };
 
-    const color2Style = {
-        backgroundColor: '#' + props.color2,
-    };
     const hidePopin = () => {
-        if (props.colorBox1) {
-            props.setActiveColorPicker('colorBox1', !props.colorBox1);
-        }
-        if (props.colorBox2) {
-            props.setActiveColorPicker('colorBox2', !props.colorBox2);
-        }
+        props.setActiveColorBox('');
     };
+
+    const displayColorBox = (colorBox) => {
+        props.setActiveColorBox(colorBox);
+    }
+
+    const setColor = (colorBox, color) => {
+        props.setColorPicker(colorBox, color);
+    }
+
+    // const colorComponents = [
+    //     {
+    //         id: 1,
+    //         color: 'color1',
+    //         title: 'Color 1',
+    //     },
+    //     {
+    //         id: 2,
+    //         color: 'color2',
+    //         title: 'Color 2',
+    //     },
+    // ]
 
     return (
         <React.Fragment>
             <p className="title">Header Color</p>
             <div className="color-picker">
+                {/* {colorComponents.map((component) =>
+                    <div key={component.id} className="color">
+                        <span>{component.title}</span>
+                        <div className="color-hex-wrapper">
+                            <span
+                                ref={eval(component.color)}
+                                className="color-hex"
+                                style={colorStyle[component.color]}
+                                onClick={() => displayColorBox(component.color)}
+                            ></span>
+                            <Colors
+                                onClick={(color) => {
+                                    setColor(component.color, color)
+                                }}
+                                showPopin={props.colorBox === component.color ? true : false}
+                            />
+                        </div>
+                    </div>
+                )} */}
                 <div className="color">
                     <span>Color 1</span>
                     <div className="color-hex-wrapper">
                         <span
-                            ref={wrapperRef}
+                            ref={color1}
                             className="color-hex"
-                            style={color1Style}
-                            onClick={() => {
-                                props.setActiveColorPicker('colorBox1', !props.colorBox1);
-                                props.setActiveColorPicker('colorBox2', false);
-                            }}
+                            style={colorStyle[COLOR1]}
+                            onClick={() => displayColorBox(COLOR1)}
                         ></span>
                         <Colors
                             onClick={(color) => {
-                                props.setColorPicker('color1', color);
+                                setColor(COLOR1, color)
                             }}
-                            showPopin={props.colorBox1}
+                            showPopin={props.colorBox === COLOR1 ? true : false}
                         />
                     </div>
                 </div>
@@ -71,19 +103,16 @@ const HeaderColor = (props) => {
                     <span>Color 2</span>
                     <div className="color-hex-wrapper">
                         <span
-                            ref={wrapperRef1}
+                            ref={color2}
                             className="color-hex"
-                            style={color2Style}
-                            onClick={() => {
-                                props.setActiveColorPicker('colorBox2', !props.colorBox2);
-                                props.setActiveColorPicker('colorBox1', false);
-                            }}
+                            style={colorStyle[COLOR2]}
+                            onClick={() => displayColorBox(COLOR2)}
                         ></span>
                         <Colors
                             onClick={(color) => {
-                                props.setColorPicker('color2', color);
+                                setColor(COLOR2, color)
                             }}
-                            showPopin={props.colorBox2}
+                            showPopin={props.colorBox === COLOR2 ? true : false}
                         />
                     </div>
                 </div>
@@ -94,23 +123,20 @@ const HeaderColor = (props) => {
 HeaderColor.propTypes = {
     color1: PropTypes.string.isRequired,
     color2: PropTypes.string.isRequired,
-    colorBox1: PropTypes.bool.isRequired,
-    colorBox2: PropTypes.bool.isRequired,
+    colorBox: PropTypes.string.isRequired,
 };
-
 
 const mapStateToProps = (state) => ({
     color1: state.color.color1,
     color2: state.color.color2,
-    colorBox1: state.popin.colorBox1,
-    colorBox2: state.popin.colorBox2,
+    colorBox: state.popin.colorBox
 });
 const mapDispatchToProps = (dispatch) => ({
     setColorPicker: (colorProp, colorHex) => {
         dispatch(setColorPicker(colorProp, colorHex));
     },
-    setActiveColorPicker: (colorProp, active) => {
-        dispatch(setActiveColorPicker(colorProp, active));
+    setActiveColorBox: (colorBox) => {
+        dispatch(setActiveColorBox(colorBox));
     },
 });
 

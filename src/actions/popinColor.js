@@ -1,7 +1,6 @@
-export const ACTIVE_COLOR_PICKER = 'ACTIVE_COLOR_PICKER';
+export const ACTIVE_COLOR_BOX = 'ACTIVE_COLOR_BOX';
 
-export const setActiveColorPicker = (colorProp, active) => ({
-    type: ACTIVE_COLOR_PICKER,
-    colorProp,
-    active,
+export const setActiveColorBox = (colorBox) => ({
+    type: ACTIVE_COLOR_BOX,
+    colorBox
 });

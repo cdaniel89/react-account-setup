@@ -1,14 +1,14 @@
 import { Record } from 'immutable';
 
 const InitialState = new Record({
-    colorBox1: false,
-    colorBox2: false,
+    colorBox: ''
 });
 
 const popin = (state = new InitialState(), action) => {
+
     switch (action.type) {
-        case 'ACTIVE_COLOR_PICKER': {
-            return state.set([action.colorProp], action.active);
+        case 'ACTIVE_COLOR_BOX': {
+            return state.set('colorBox', action.colorBox);
         }
         default:
             return state;
