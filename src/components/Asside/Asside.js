@@ -1,11 +1,11 @@
 import React from 'react';
-import './AccountSetup.css';
+import './Asside.css';
 
 import ProfileImage from '../ProfileImage/ProfileImage';
 import HeaderColor from '../HeaderColor/HeaderColor';
 import UserInfo from '../UserInfo/UserInfo';
 
-const AccountSetup = () => {
+const Asside = () => {
     return (
         <div className="account-setup aside">
             <h2>Account Setup</h2>
@@ -22,4 +22,4 @@ const AccountSetup = () => {
     );
 };
 
-export default AccountSetup;
+export default Asside;

@@ -1,18 +1,18 @@
 import React from 'react';
-import './AccountPreview.css';
+import './MainContent.css';
 import { setUserFormErrors, removeErrorItem } from '../../actions/errorForm';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const AccountPreview = (props) => {
+const MainContent = (props) => {
     const style = {
         backgroundImage: `linear-gradient(to right, #${props.color1}, #${props.color2})`,
     };
 
-    const removeError = index => {
+    const removeError = (index) => {
         props.removeErrorItem(index);
-    }
+    };
 
     return (
         <div className="account-preview main-content">
@@ -57,7 +57,7 @@ const AccountPreview = (props) => {
                             className="delete"
                         >
                             x
-						</span>
+                        </span>
                     </li>
                 ))}
             </ul>
@@ -65,7 +65,7 @@ const AccountPreview = (props) => {
     );
 };
 
-AccountPreview.propTypes = {
+MainContent.propTypes = {
     imagePreviewUrl: PropTypes.string.isRequired,
     color1: PropTypes.string.isRequired,
     color2: PropTypes.string.isRequired,
@@ -95,4 +95,4 @@ const mapDispatchToProps = (dispatch) => ({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountPreview);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContent);

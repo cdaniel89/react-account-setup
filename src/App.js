@@ -2,15 +2,15 @@ import React from 'react';
 import './Reset.css';
 import './App.css';
 
-import AccountSetup from './components/AccountSetup/AccountSetup';
-import AccountPreview from './components/AccountPreview/AccountPreview';
+import Asside from './components/Asside/Asside';
+import MainContent from './components/MainContent/MainContent';
 
 function App(props) {
     return (
         <div className="app-container">
             <div className="app">
-                <AccountSetup />
-                <AccountPreview />
+                <Asside />
+                <MainContent />
             </div>
         </div>
     );
